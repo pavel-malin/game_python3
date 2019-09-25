@@ -1,0 +1,7 @@
+.vscode/
+my_env_game/
+__pycache__/
+.pytest_cache/
+
+
+
