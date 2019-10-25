@@ -1,4 +1,6 @@
-import pygame, sys
+import sys
+
+import pygame
 from pygame.locals import *
 
 # Настройка pygame.
@@ -29,7 +31,7 @@ windowSurface.fill(WHITE)
 
 # Нанесение на поверхность зеленого многогольника.
 pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277),
-                                          (56, 277), (0, 106)))
+                                           (56, 277), (0, 106)))
 
 # Нанесение на поверхность синих линий.
 pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
@@ -60,6 +62,6 @@ pygame.display.update()
 # Запуск игрового цикла.
 while True:
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type is QUIT:
             pygame.quit()
             sys.exit()

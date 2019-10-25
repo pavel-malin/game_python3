@@ -20,13 +20,14 @@ for guessesTaken in range(6):
 
     if guess > number:
         print("Your number is big.")
-    
+
     if guess == number:
         break
 
 if guess == number:
     guessesTaken = str(guessesTaken + 1)
-    print("Fine, " + myName + "! You managed for " + guessesTaken + " attempts!")
+    print("Fine, " + myName + "! You managed for " + guessesTaken +
+          " attempts!")
 
 if guess != number:
     number = str(number)

@@ -1,5 +1,7 @@
 import random
-HANGMAN_PICS = ['''
+
+
+HANGMAN_PICS = [ '''
     +---+
         |
         |
@@ -35,12 +37,20 @@ HANGMAN_PICS = ['''
    /|\  |
    / \  |
        ===''']
-words = 'аист акула бабуин баран барсук бобр бык рерблюд волк воробей ворон выдра голубь гусь жаба зебра змея индюк кит коза козел койот корова кошка кролик крыса курица лама ласка лебедь лев лиса лосось лось лягушка медведь моллюск моль мул муравей мышь норка носорог обезъяна оца окунь олень орел осел панда паук питон попугай пума семга скунс собака ова тигр тритон тюлень утка форель хорек черепаха ястреб ящерица'.split()
+words = 'аист акула бабуин баран барсук бобр бык \
+         рерблюд волк воробей ворон выдра голубь гусь жаба зебра змея индюк \
+         кит коза козел койот корова кошка кролик крыса курица лама ласка \
+         лебедь лев лиса лосось лось лягушка медведь моллюск моль мул \
+         муравей мышь норка носорог обезъяна оца окунь олень орел осел \
+         панда паук питон попугай пума семга скунс собака ова тигр тритон \
+         тюлень утка форель хорек черепаха ястреб ящерица'.split()
+
 
 def getRandomWord(wordList):
     # Эта функция возвращает случайную строку из переванного списка
     wordIndex = random.randint(0, len(wordList) - 1)
     return wordList[wordIndex]
+
 
 def displayBoard(missedLetters, correctLetters, secretWord):
     print(HANGMAN_PICS[len(missedLetters)])
@@ -53,16 +63,19 @@ def displayBoard(missedLetters, correctLetters, secretWord):
 
     blanks = '_' * len(secretWord)
 
-    for i in range(len(secretWord)): # заменяет пропуски даднными буквами.
+    for i in range(len(secretWord)):  # заменяет пропуски даднными буквами.
         if secretWord[i] in correctLetters:
             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
 
-    for letter in blanks: # Показывает секретное слово с пробелами между буквами
+    for letter in blanks:  # Показывает секретное слово
+                           # с пробелами между буквами
         print(letter, end=' ')
     print()
 
+
 def getGuess(alreadyGuessed):
-    # Возвращает букву, введенную игроком. Эта функция проверяет, что игрок ввел только одну букву и ничего больше.
+    # Возвращает букву, введенную игроком. Эта функция проверяет,
+    # что игрок ввел только одну букву и ничего больше.
     while True:
         print('Введите букву.')
         guess = input()
@@ -76,16 +89,20 @@ def getGuess(alreadyGuessed):
         else:
             return guess
 
+
 def playAgain():
-    # Эта функция возвращает значение True, если игрок хочет сыграть заново; в противном случае возвращает False.
+    # Эта функция возвращает значение True, если игрок хочет сыграть заново;
+    # в противном случае возвращает False.
     print('Хотите сыграть еще? (да или нет)')
     return input().lower().startswith('д')
+
 
 print(' В И С Е Л И Ц А ')
 missedLetters = ''
 correctLetters = ''
 secretWord = getRandomWord(words)
 gameIsDone = False
+
 
 while True:
     displayBoard(missedLetters, correctLetters, secretWord)
@@ -111,10 +128,13 @@ while True:
         # Проверяет, превысил ли игрок лимит попыток и проиграл.
         if len(missedLetters) == len(HANGMAN_PICS) - 1:
             displayBoard(missedLetters, correctLetters, secretWord)
-            print('Вы исчерпали все попытки!\nНе угадано букв: ' + str(len(missedLetters)) + '.Было загадано слово"' + secretWord + '".')
+            print('Вы исчерпали все попытки!\nНе угадано букв: ' +
+                  str(len(missedLetters)) + '.Было загадано слово"' +
+                  secretWord + '".')
             gameIsDone = True
 
-        # Запрашивет, хочет ли игрок сыграть заново (только если игра завершена.)
+        # Запрашивет, хочет ли игрок сыграть заново (только если игра
+        # завершена.)
         if gameIsDone:
             if playAgain():
                 missedLetters = ''

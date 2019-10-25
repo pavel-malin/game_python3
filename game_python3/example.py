@@ -1,5 +1,3 @@
-
-
 def sayGoodbye():
     print('Goodbye!')
 

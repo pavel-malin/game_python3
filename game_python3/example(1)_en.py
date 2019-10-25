@@ -1,5 +1,7 @@
 def sayHello(name):
-    print('Hello, ' + name + '. Your name from ' + str(len(name)) + ' letters.')
+    print('Hello, ' + name + '. Your name from ' + str(len(name)) +
+          ' letters.')
+
 
 sayHello('Alice')
 sayHello('Boris')
